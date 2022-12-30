@@ -1,15 +1,13 @@
 package org.example;
 
-import java.io.FileDescriptor;
-import java.io.FileOutputStream;
-import java.io.PrintStream;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
 
 public class Main {
 
-    private static final String ROOT_PATH = "./tests/";
+    private static String ROOT_PATH = "./tests/";
 
     public static void main(String[] args) {
+        ROOT_PATH = new File(ROOT_PATH).getAbsolutePath();
         setConsoleEncoding("utf-8");
         Utils utils = new Utils();
         utils.readFiles(ROOT_PATH);
