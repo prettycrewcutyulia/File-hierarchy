@@ -22,7 +22,7 @@ public class Concatenator {
         }
 
         StringBuilder result = new StringBuilder();
-        //TODO сделать топологическую сортировку и конкатенацию файлов в порядке сортировки
+        fileGraph.getSortedList().forEach(vertex -> concatFileToString(files.get(vertex), result));
         return result.toString();
     }
 
