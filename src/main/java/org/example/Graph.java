@@ -8,7 +8,9 @@ public class Graph {
     private final ArrayList<Integer> parent;
     private final ArrayList<Integer> incomingDegrees;
 
-
+    /**
+     * Конструктор для создания пустого графа
+     */
     public Graph() {
         vertexNum = 0;
         dependencies = new HashMap<>();
@@ -16,11 +18,19 @@ public class Graph {
         parent = new ArrayList<>();
     }
 
+    /**
+     * Добавление ребра между двумя вершинами в графе
+     * @param start начальная вершина ребра
+     * @param finish конечная вершина ребра
+     */
     public void addEdge(int start, int finish) {
         dependencies.get(start).add(finish);
         incomingDegrees.set(finish, incomingDegrees.get(finish) + 1);
     }
 
+    /**
+     * Добавление новой вершины в граф
+     */
     public void addVertex() {
         dependencies.put(dependencies.size(), new ArrayList<>());
         incomingDegrees.add(0);
@@ -58,6 +68,10 @@ public class Graph {
         return isCycled;
     }
 
+    /**
+     * Поиск цикла в графе с помощью алгоритма поиска в глубину
+     * @return список вершин, образующих цикл в графе (пустой список, если циклов нет)
+     */
     public ArrayList<Integer> searchCycle() {
         Integer[] color = new Integer[vertexNum];
         Arrays.fill(color, 0);
@@ -72,6 +86,12 @@ public class Graph {
         return new ArrayList<>();
     }
 
+    /**
+    * Рекурсивная функция для топологической сортировки графа
+    * @param vertex текущая вершина
+    * @param color массив цветов вершин
+    * @param topologicalSortOrder список вершин в порядке топологической сортировки
+     */
     private void sortDFS(int vertex, Integer[] color, ArrayList<Integer> topologicalSortOrder) {
         color[vertex] = 1;
         if (dependencies.containsKey(vertex)) {
@@ -85,6 +105,10 @@ public class Graph {
         topologicalSortOrder.add(vertex);
     }
 
+    /**
+     * Получение отсортированного списка вершин графа в порядке топологической сортировки
+     * @return отсортированный список вершин графа
+     */
     public ArrayList<Integer> getSortedList() {
         Integer[] color = new Integer[vertexNum];
         Arrays.fill(color, 0);
