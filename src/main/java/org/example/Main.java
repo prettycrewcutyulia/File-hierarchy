@@ -4,15 +4,15 @@ import java.io.*;
 
 public class Main {
 
-    private static String ROOT_PATH = "./tests/";
+    private static String rootPath = "./tests/1";
 
     public static void main(String[] args) {
-        ROOT_PATH = new File(ROOT_PATH).getAbsolutePath();
+        rootPath = new File(rootPath).getAbsolutePath();
         setConsoleEncoding("utf-8");
         Utils utils = new Utils();
-        utils.readFiles(ROOT_PATH);
+        utils.readFiles(rootPath);
         Graph graph = new Graph();
-        if(!utils.writeDependencies(graph, ROOT_PATH)){
+        if(!utils.writeDependencies(graph, rootPath)){
             return;
         }
 
